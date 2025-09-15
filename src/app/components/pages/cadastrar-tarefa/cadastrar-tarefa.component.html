@@ -1,0 +1,58 @@
+<div class="container mt-4">
+	<h2>Cadastrar Tarefa</h2>
+	
+	<app-mensagem-alerta [message]="alertMessage" [styleMessage]="styleMessage"/>
+
+	<form [formGroup]="form" (ngSubmit)="onSubmit()">
+		<div class="mb-3">
+			<label for="titulo" class="form-label">Título</label>
+			<input formControlName="titulo" type="text" class="form-control" id="titulo" name="titulo" required>
+			 <div class="text-danger" *ngIf="form.get('titulo')?.touched">
+				<div *ngIf="form.get('titulo')?.hasError('required')">
+					O título da tarefa é obrigatório.
+				</div>
+				<div *ngIf="form.get('titulo')?.hasError('minlength')">
+					O título da tarefa deverá ter no mínimo 10 caracteres.
+				</div> 
+				<div *ngIf="form.get('titulo')?.hasError('maxlength')">
+					O título da tarefa deverá ter no mínimo 100 caracteres.
+				</div> 
+			 </div>
+		</div>
+		<div class="mb-3">
+			<label for="descricao" class="form-label">Descrição</label>
+			<textarea formControlName="descricao" class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
+			<div class="text-danger" *ngIf="form.get('descricao')?.touched">
+				<div *ngIf="form.get('descricao')?.hasError('required')">
+					A descrição da tarefa é obrigatória.
+				</div>
+				<div *ngIf="form.get('descricao')?.hasError('minlength')">
+					A descrição da tarefa deverá ter no mínimo 15 caracteres.
+				</div> 
+				<div *ngIf="form.get('descricao')?.hasError('maxlength')">
+					A descrição da tarefa deverá ter no mínimo 200 caracteres.
+				</div> 
+			 </div>
+		</div>
+		<div class="mb-3">
+			<label for="dataConclusao" class="form-label">Data de Conclusão</label>
+			<input formControlName="dataConclusao" type="datetime-local" class="form-control" id="dataConclusao" name="dataConclusao">
+		</div>
+		<div class="mb-3">
+			<label for="statustarefa" class="form-label">Status da Tarefa</label>
+			<select class="form-select" id="statustarefa" formControlName="status">
+				<option value="" selected>Selecione...</option>
+				<option value="{{ status.codigo }}" *ngFor="let status of statusTarefa">
+					{{ status.descricao }}
+				</option>
+			</select>
+			<div class="text-danger" *ngIf="form.get('status')?.touched">
+				<div *ngIf="form.get('status')?.hasError('required')">
+					O status da tarefa é obrigatório.
+				</div>
+			 </div>
+		</div>
+		<button type="submit" class="btn btn-success" [disabled]="form.invalid">Cadastrar</button>
+		<button type="button" class="btn btn-secondary ms-2" routerLink="/pages/consultar-tarefas">Sair</button>
+	</form>
+</div>

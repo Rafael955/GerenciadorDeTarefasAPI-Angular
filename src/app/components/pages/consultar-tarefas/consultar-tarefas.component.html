@@ -1,0 +1,97 @@
+<div class="container mt-5">
+  <div class="d-flex flex-row justify-content-between">
+    <h2>Consulta de Tarefas</h2>
+    <select class="form-select mb-2" id="statustarefa" formControlName="status" style="width: 200px;" (change)="onStatusChange($event)">
+				<option value="">Todas as tarefas</option>
+				<option value="{{ status.codigo }}" *ngFor="let status of statusTarefa">
+					{{ status.descricao }}
+				</option>
+			</select>
+  </div>
+  <app-mensagem-alerta [message]="alertMessage" [styleMessage]="styleMessage" />
+  <table class="table table-bordered table-hover align-middle">
+    <thead class="table-secondary">
+      <tr>
+        <th scope="col">Título</th>
+        <th scope="col">Descrição</th>
+        <th scope="col">Data de Criação</th>
+        <th scope="col">Data de Conclusão</th>
+        <th scope="col">Status</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Exemplo de linha de tarefa. Substitua pelo *ngFor futuramente -->
+      <tr *ngFor="let tarefa of tarefasFiltradas | paginate: { itemsPerPage: 10, currentPage: p}">
+        <td>{{ tarefa.titulo }}</td>
+        <td style="max-width: 350px;">{{ tarefa.descricao }}</td>
+        <td>{{ tarefa.dataCriacao | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{ (tarefa.dataConclusao | date:'dd/MM/yyyy HH:mm') || '---'}}</td>
+        <td>
+          @if(tarefa.status.codigo == 1) {
+            <span class="badge text-bg-warning">{{ tarefa.status.descricao }}</span>
+          }
+          @else if(tarefa.status.codigo == 2) {
+            <span class="badge text-bg-primary">{{ tarefa.status.descricao }}</span>
+          }
+          @else if(tarefa.status.codigo == 3) {
+            <span class="badge text-bg-success">{{ tarefa.status.descricao }}</span>
+          }
+        </td>
+        <td>
+          <a class="btn btn-sm btn-info me-2" title="ExibirDados" [routerLink]="[`/pages/detalhes-tarefa/${tarefa.id}`]">
+            <i class="bi bi-info-circle"></i> Detalhes
+          </a>
+          <a class="btn btn-sm btn-warning me-2" title="Editar" [routerLink]="[`/pages/editar-tarefa/${tarefa.id}`]">
+            <i class="bi bi-pencil"></i> Editar
+          </a>
+          <button class="btn btn-sm btn-danger" title="Excluir" data-bs-toggle="modal" data-bs-target="#painel_confirmacao_exclusao" (click)="prepareDelete(tarefa)">
+            <i class="bi bi-trash"></i> Excluir
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="this.tarefasFiltradas.length == 0">
+        <td colspan="6" align="center" style="font-weight: bold;">
+          Nenhuma tarefa encontrada
+        </td>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="this.tarefasFiltradas.length > 0">
+      <tr>
+          <td colspan="6" style="font-weight: bold;">
+              Número de Registros: {{ tarefasFiltradas.length }}
+          </td>
+      </tr>
+  </tfoot>
+  </table>
+  <div class="d-flex justify-content-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+
+<div class="modal fade" id="painel_confirmacao_exclusao" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h1 class="modal-title fs-5 text-light" id="exampleModalLabel">
+                    Aviso
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-2">
+                    Deseja realmente excluir a tarefa <strong>{{ tarefaExclusao.titulo }}?</strong>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelarExclusao()">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="onDelete()">
+                    Excluir Tarefa
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

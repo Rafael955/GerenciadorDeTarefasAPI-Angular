@@ -1,0 +1,32 @@
+<div class="container mt-4">
+	<h2>Detalhes da Tarefa</h2>
+	<div class="card">
+		<div class="card-body">
+			<dl class="row mb-0">
+				<dt class="col-sm-3">ID</dt>
+				<dd class="col-sm-9">{{ tarefa.id }}</dd>
+
+				<dt class="col-sm-3">Título</dt>
+				<dd class="col-sm-9">{{ tarefa.titulo }}</dd>
+
+				<dt class="col-sm-3">Descrição</dt>
+				<dd class="col-sm-9">{{ tarefa.descricao }}</dd>
+
+				<dt class="col-sm-3">Data de Criação</dt>
+				<dd class="col-sm-9">{{ tarefa.dataCriacao | date:'dd/MM/yyyy HH:mm' }}</dd>
+
+				<dt class="col-sm-3">Data de Conclusão</dt>
+				<dd class="col-sm-9">{{ tarefa.dataConclusao | date:'dd/MM/yyyy HH:mm' }}</dd>
+
+				<dt class="col-sm-3">Status</dt>
+				<dd class="col-sm-9">
+					<span class="badge bg-warning text-dark">{{ tarefa.status.descricao }}</span>
+				</dd>
+			</dl>
+		</div>
+		<div class="card-footer text-end">
+			<a class="btn btn-primary me-2" [routerLink]="[`/pages/editar-tarefa/${tarefaId}`]">Editar</a>
+			<button class="btn btn-secondary" routerLink="/pages/consultar-tarefas">Voltar</button>
+		</div>
+	</div>
+</div>
