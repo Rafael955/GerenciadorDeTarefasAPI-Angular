@@ -1,59 +1,77 @@
-# GerenciadorDeTarefasWeb
+# Gerenciador de Tarefas Web ✅
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
+Aplicação web desenvolvida em **Angular 19** para gerenciar tarefas do dia a dia.  
+Permite cadastrar, listar, editar e excluir tarefas de forma simples e organizada.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Tecnologias Utilizadas
 
-```bash
-ng serve
-```
+- [Angular 19](https://angular.dev/) - Framework principal
+- [Bootstrap 5.3.8](https://getbootstrap.com/) - Estilização e componentes responsivos
+- [Bootstrap Icons 1.13.1](https://icons.getbootstrap.com/) - Ícones
+- [RxJS 7.8](https://rxjs.dev/) - Programação reativa
+- [ngx-pagination 6.0.3](https://www.npmjs.com/package/ngx-pagination) - Paginação de listas
+- [TypeScript 5.7](https://www.typescriptlang.org/) - Linguagem principal
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 📂 Estrutura do Projeto
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+GerenciadorDeTarefasWeb/
+├── src/ # Código-fonte principal
+│ ├── app/ # Módulos, componentes e serviços
+│ ├── assets/ # Arquivos estáticos (imagens, ícones, etc.)
+│ └── environments/ # Configurações de ambiente
+├── angular.json # Configurações do Angular CLI
+├── package.json # Dependências e scripts
+├── tsconfig.json # Configurações do TypeScript
+└── README.md # Documentação do projeto
 
-```bash
-ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## ⚙️ Pré-requisitos
 
-## Building
+Antes de rodar o projeto, instale:
 
-To build the project run:
+- [Node.js](https://nodejs.org/) (versão LTS recomendada)
+- [Angular CLI](https://angular.dev/tools/cli) (`npm install -g @angular/cli`)
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## ▶️ Como Executar
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Clone o repositório e instale as dependências:
 
 ```bash
-ng e2e
-```
+git clone https://github.com/seu-usuario/gerenciador-de-tarefas-web.git
+cd gerenciador-de-tarefas-web
+npm install
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Inicie o servidor de desenvolvimento:
 
-## Additional Resources
+npm start
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Acesse em: http://localhost:4200
+
+🛠️ Scripts Disponíveis
+
+| Comando         | Descrição                                  |
+| --------------- | ------------------------------------------ |
+| `npm start`     | Inicia a aplicação em modo desenvolvimento |
+| `npm run build` | Compila a aplicação para produção          |
+| `npm test`      | Executa os testes unitários                |
+| `npm run watch` | Recompila automaticamente no modo dev      |
+
+📌 Funcionalidades
+
+ - Cadastro de novas tarefas
+
+ - Listagem de tarefas com paginação
+
+ - Edição de tarefas existentes
+
+ - Exclusão de tarefas
+
+ - Autenticação de usuários (futuro)
