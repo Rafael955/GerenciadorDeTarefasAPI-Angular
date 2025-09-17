@@ -18,6 +18,7 @@ Permite cadastrar, listar, editar e excluir tarefas de forma simples e organizad
 
 ## 📂 Estrutura do Projeto
 
+```bash
 GerenciadorDeTarefasWeb/
 ├── src/ # Código-fonte principal
 │ ├── app/ # Módulos, componentes e serviços
@@ -27,7 +28,7 @@ GerenciadorDeTarefasWeb/
 ├── package.json # Dependências e scripts
 ├── tsconfig.json # Configurações do TypeScript
 └── README.md # Documentação do projeto
-
+```
 
 ---
 
@@ -48,10 +49,13 @@ Clone o repositório e instale as dependências:
 git clone https://github.com/seu-usuario/gerenciador-de-tarefas-web.git
 cd gerenciador-de-tarefas-web
 npm install
+```
 
 Inicie o servidor de desenvolvimento:
 
+```bash
 npm start
+```
 
 Acesse em: http://localhost:4200
 
